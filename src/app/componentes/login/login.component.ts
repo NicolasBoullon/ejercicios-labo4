@@ -15,15 +15,19 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class LoginComponent implements OnInit{
   nombre:string = "";
   clave:string = "";
-
-  nuevoUser:Usuario = new Usuario("Nico","Pass");
+  user2:Usuario = new Usuario("a","a");
+  ngOnInit(): void {
+    
+    const userString = localStorage.getItem("usuario");
+    const user:Usuario = JSON.parse(userString!);
+    this.user2.clave = user.clave;
+    this.user2.nombre = user.nombre;
+  }
   
   bandera:boolean = false;
   login:boolean = false;
 
-  ngOnInit(): void {
-    localStorage.setItem("usuario",JSON.stringify(this.nuevoUser));
-  }
+
 
   constructor(private router: Router) {
 
@@ -37,7 +41,7 @@ export class LoginComponent implements OnInit{
     this.login = true;
     this.bandera = false;
     
-    if(this.nuevoUser.clave == this.clave && this.nuevoUser.nombre == this.nombre){
+    if(this.user2.clave == this.clave && this.user2.nombre == this.nombre){
       this.bandera = true;
     }
   }

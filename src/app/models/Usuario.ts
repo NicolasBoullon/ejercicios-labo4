@@ -3,7 +3,7 @@ export class Usuario{
     clave:string;
 
 
-    constructor(nombre:string,clave:string){
+    constructor(nombre:string="",clave:string=""){
         this.nombre = nombre;
         this.clave = clave;
     }
